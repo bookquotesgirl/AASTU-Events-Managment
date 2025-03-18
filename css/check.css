@@ -1,0 +1,124 @@
+body{
+    background-color: #251D1D;
+    color: white;
+    font-family: monospace;
+}
+main{
+   
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+.main-container{
+    display: flex;
+    justify-content: space-between;
+    width: 80%;
+    max-width: 1000px;
+}
+.form-container{
+    width:55%;
+}
+h1{
+    font-size: 24px;
+}
+header{
+    background-color: #251D1D;
+    display:flex;
+    align-items:center;
+    padding: 10px;
+}
+header img{
+    height: auto;
+    border-radius: 50%;
+}
+nav{
+    margin: auto;
+position:absolute;
+right:0;
+overflow: auto;
+}
+nav a{
+    text-decoration: none;
+    color:white;
+    font-size:16px;
+    padding: 15px;
+}
+nav a:hover{
+  text-decoration: underline;
+}
+
+input{
+    width: 48%;
+    padding: 10px;
+    background: transparent;
+    border: 1px solid white;
+    color: white;
+}
+input[type="email"]{
+    width:100% ;
+}
+form{
+    display:flex;
+    flex-wrap:wrap;
+    gap: 15px;
+}
+label{
+    width: 100%;
+    font-size: 14px;
+}
+button{
+    width: 100%;
+    padding: 15px;
+background: transparent;
+border: 2px solid white;
+color:white;
+font-size: 16px;
+cursor:pointer;
+border-radius: 25px;
+transition: 0.3s;
+}
+button:hover{
+    background: white;
+    color: black;
+}
+footer {
+    
+    background-color: #141111; 
+    padding: 40px 20px; /* Add padding for spacing */
+    text-align: center; /* Center-align content */
+    
+  }
+  
+  footer .container {
+    display: flex;
+    flex-direction: column;
+    
+    align-items: center; /* Center-align items */
+    gap: 15px; /* Space between contact info and socials */
+    max-width: 600px; /* Limit the width for better readability */
+    margin: auto; /* Center the container */
+  }
+  
+  footer p {
+    margin: 0;
+    font-size: 16px;
+    line-height: 1.5;
+    color: white; /* Dark text for readability */
+  }
+  
+  footer p span {
+    font-weight: bold; /* Highlight contact info */
+  }
+  footer a {
+    color: white; /* Link color */
+    text-decoration: none; /* Remove underline */
+    font-weight: bold;
+    font-size: 16px;
+    transition: color 0.3s ease; /* Smooth hover effect */
+  }
+  
+  footer a:hover {
+    color: #0056a3; /* Darker color on hover */
+  }
+  

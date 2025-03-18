@@ -1,0 +1,514 @@
+body{
+    background-color: #251D1D;
+} 
+@font-face {
+    font-family: 'gloock';
+    src: url('fonts/Gloock-Regular.ttf') format('true type');
+    font-weight: normal;
+    font-style: normal;
+  }
+  @font-face {
+    font-family: 'azeret';
+    src: url('fonts/AzeretMono-VariableFont_wght.ttf') format('true type');
+    font-weight: normal;
+    font-style: normal;
+  }
+  
+header{
+    background-color: #251D1D;
+    display:flex;
+    align-items:center;
+    padding: 10px;
+}
+header img{
+    height: auto;
+    border-radius: 50%;
+}
+nav{
+    margin: auto;
+position:fixed;
+right:0;
+overflow: auto;
+word-spacing: 20px;
+letter-spacing: 3px;
+z-index:1000;
+}
+nav a{
+    font-family: 'azeret', sans-serif;
+    text-decoration: none;
+    color:white;
+    font-size:12px;
+    padding: 15px;
+}
+nav a:hover{
+    text-decoration: underline;
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+section{
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    padding: 10px;
+  position: relative;
+}
+#first{
+    z-index: 1;
+}
+#first h1,h2,h3{
+    margin: 0;
+    text-align: center;
+}
+#first h1{
+font-size: 50px;
+font-family: 'gloock', sans-serif;
+font-size: 60px;
+text-align: center;
+-webkit-text-fill-color: white;
+margin-top: 50px;
+letter-spacing: 5px;
+}
+#first h2{
+    font-size:280px;
+    font-family: monospace;
+    text-align: center;
+    background: url('images/unis.gif') no-repeat center;
+    background-size: cover;
+    -webkit-background-clip: text;
+background-clip: text;
+letter-spacing: 5px;
+display: inline-block;
+}
+#first h3{
+    
+    word-spacing: 0.5cm;
+    text-align: center;
+    color: white;
+    font-family: monospace;
+    font-weight: lighter;
+    font-size: 20px;
+    letter-spacing: 5px;
+}
+#first p{
+    display: flex; /* Enables Flexbox */
+      justify-content: center; /* Centers horizontally */
+      align-items: center; /* Centers vertically */
+      margin: 0;
+}
+#first a{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width:100px;
+    height: 50px;
+    border-radius: 50%;
+    color:white;
+    font-size: 20px;
+    font-weight: bold;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease; 
+    
+}
+#first a:hover{
+    background-color: gray;
+    transform: scale(1.1)
+}
+#second{
+    background-color: #FAF7C9;
+    top: 0;
+    height: auto;
+    min-height: 100vh;
+    padding: 50px;
+}
+#second h1{
+    font-family: 'azeret', sans-serif;
+    font-size: 18px;
+    font-weight: 500;
+    text-align: center;
+}
+.name{
+    font-size: 30px;
+    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-weight:lighter;
+    cursor: pointer;
+    letter-spacing:2px;
+    word-spacing: 1px;
+}
+
+.details{
+    display: block; /* Keep block display for height control */
+    max-height: 0; /* Initially hidden */
+    overflow: hidden;
+    transition: max-height 0.5s ease-in-out;
+    margin-top: 10px;
+    border-radius: 5px;
+    color: #333;
+    max-width: 70%;
+}
+.event{
+    font-family: 'Georgia', serif;
+    height: 120px; /* Fixed height when details are hidden */
+    align-items: center;
+    padding: 15px 0;
+    border-radius: 8px;
+    cursor: pointer;
+    overflow: hidden;
+    transition: height 0.5s ease-in-out;
+}
+.event-header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.event-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.date {
+    font-size: 14px;
+    color: #555;
+    text-transform: uppercase;
+}
+
+.name {
+    font-size: 28px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+}
+
+.event p{
+    margin: 5px 0;
+}
+.event.open{
+    height: auto;
+}
+.event a{
+text-decoration: none;
+color: #251D1D;
+padding: 8px 12px;
+border-radius: 5px;
+}
+.event a:hover{
+    background-color: rgb(205, 220, 220);
+}
+.event.open .details {
+    display: block;
+}
+.arrow-icon{
+    width: 50px;  /* Adjust size */
+    margin-left: 8px;
+    transition: transform 0.3s ease;
+}
+
+.event.open .arrow-icon {
+    transform: rotate(180deg); /* Rotate when expanded */
+}
+hr{
+    border: none;
+    border-top: 1px solid black; /* Match line design */
+    margin: 0; 
+}
+
+#third h1{
+    margin-top: 40px;
+    font-weight: lighter;
+    text-align: center;
+    color: white;
+    font-family: monospace;
+}
+#third h2{
+    font-weight: bold;
+    text-align: left;
+    color: white;
+    font-family: monospace;
+    font-size: 50px;
+}
+.slogan{
+    margin-top: 40px;
+    margin-bottom: 50px;
+    text-align: center;
+    font-size: 20px;
+    font-weight: lighter;
+    color: white;
+    letter-spacing: 2px;
+    font-family: monospace;
+}
+.container{
+    display: flex;
+    gap: 16px;
+    align-items: center;
+    justify-content:space-around;
+    margin-bottom: 10px;
+    height: auto;
+}
+.image {
+    max-width: 100px; /* Adjust the image size */
+    height: auto; /* Maintain the aspect ratio */
+  }
+  
+.text{
+    margin: 10px;
+    color: white;
+    font-weight: lighter;
+    font-family: monospace;
+    font-size: 16px;
+}
+.text-content{
+    display: flex;
+    flex-direction: column;
+    gap: 8px
+}
+.title{
+    margin:0;
+    font-size: 18px;
+    font-weight: bold;
+}
+.scroll{
+    max-height: 300px;
+    overflow-y: auto;
+    border: 1px ;
+    padding: 16px;
+}
+#fourth h2{
+    font-weight: bold;
+    text-align: left;
+    color: black;
+    font-family:cursive;
+    font-size: 50px;
+}
+#fourth{
+    background-color:#FAF7C9 ;  
+}
+#fourth .text{
+    color:black;
+}
+#fifth{
+    margin-top: 100px;
+  height: 80vh;
+}
+#fifth h2{
+    font-weight: bold;
+    text-align: left;
+    color: white;
+    font-family:cursive;
+    font-size: 50px;
+}
+#sixth{
+    background: radial-gradient(circle, #FAF7C9 , rgb(166, 162, 141));
+    
+}
+#sixth h1{
+    margin: 50px;
+  text-align: center;
+  font-size: 90px;
+  font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  color:#251D1D;
+}
+#sixth a{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width:100px;
+        height: 50px;
+        border-radius: 50%;
+        border-color: #141111;
+        color:#251D1D;
+        font-size: 20px;
+        font-weight: bold;
+        text-decoration: none;
+        border: black;
+        cursor: pointer;
+        transition: background-color 0.3s ease, transform 0.2s ease; 
+        letter-spacing: 2px; 
+    }
+    #sixth p{
+        display: flex; /* Enables Flexbox */
+          justify-content: center; /* Centers horizontally */
+          align-items: center; /* Centers vertically */
+          margin: 0;
+    }
+    #seven{
+        background-color: #FAF7C9;
+        height: 250vh;
+    }
+    #seven h1{
+        text-align: center;
+        font-size: 50px;
+
+    }
+    #seven .slogan{
+        color: black;
+    }
+    #seven .container{
+        align-self: center;
+        display: grid;
+        grid-template-columns: auto 1fr;
+    }
+    #seven image{
+        max-width: 50px;
+        max-height: 180px;
+    }
+    #eight{
+        background-color: #251D1D;;
+        }
+
+#nine{
+    background: radial-gradient(circle, rgb(154, 137, 42), rgb(166, 162, 141));
+   height: 70vh;
+}
+#nine h1{
+    margin: 50px;
+  text-align: center;
+  font-size: 90px;
+  font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  color:#251D1D;
+}
+#nine p{
+    text-align: center;
+    font-size: 20px;
+    font-family: monospace;
+}
+#nine a{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width:150px;
+        height: 50px;
+        border-radius: 50%;
+        color:#251D1D;
+        font-size: 20px;
+        font-weight: bold;
+        text-decoration: none;
+        border: 1px solid black;
+        cursor: pointer;
+        transition: background-color 0.3s ease, transform 0.2s ease; 
+        letter-spacing: 2px; 
+    }
+    #nine .link{
+        display: flex; /* Enables Flexbox */
+          justify-content: center; /* Centers horizontally */
+          align-items: center; /* Centers vertically */
+          margin-top: 20px;
+    }
+    #nine a:hover{
+        background-color: gray;
+        transform: scale(1.1);
+    }
+    footer {
+        display: grid;
+        background-color: #141111; 
+        padding: 40px 20px; /* Add padding for spacing */
+        text-align: center; /* Center-align content */
+        
+      }
+      
+      footer .container {
+        justify-content: space-between;
+        display: grid;
+        align-items: center; /* Center-align items */
+        gap: 20px; /* Space between contact info and socials */
+        max-width: 600px; /* Limit the width for better readability */
+        margin: 0 auto; /* Center the container */
+      }
+      
+      footer p {
+        margin: 0;
+        font-size: 16px;
+        line-height: 1.5;
+        color: white; /* Dark text for readability */
+      }
+      
+      footer p span {
+        font-weight: bold; /* Highlight contact info */
+      }
+      
+      footer a {
+        color: white; /* Link color */
+        text-decoration: none; /* Remove underline */
+        font-weight: bold;
+        font-size: 16px;
+        transition: color 0.3s ease; /* Smooth hover effect */
+      }
+      
+      footer a:hover {
+        color: #0056a3; /* Darker color on hover */
+      }
+      
+      footer .container {
+        display: flex;
+        justify-content: space-between; /* Space items horizontally */
+        flex-wrap: wrap; /* Allow wrapping for smaller screens */
+      }
+      
+      footer p, footer a {
+        text-align: left; /* Align content to the left */
+      }
+      
+      footer a {
+        display: inline-block;
+        margin-top: 8px; /* Space between links */
+      }
+      
+      #tic{
+        margin: 50px;
+        width: 150px;
+        border-radius: 50%;
+        border-color: white;
+        border-style:solid ;
+        height: 50px;
+        background-color:#251D1D;
+        color:white;
+        font-size: 16px;
+      }
+      #tic:hover{
+        background-color: #FAF7C9 ;
+        color: black;
+      }
+      #tics{
+        width: 150px;
+        border-radius: 50%;
+        height: 50px;
+        border-color: black;
+        border-style: solid;
+        background-color:#FAF7C9;
+        color:black;
+        font-size: 16px;
+      }
+      #tics:hover{
+        background-color: black;
+        color: white;
+      }
+      @keyframes appear{
+        from{
+            opacity: 0;
+            scale: 0.5;
+        }
+        to{
+            opacity: 1;
+            scale: 1;
+        }
+      }
+      
+      #third .container{
+        animation: appear linear;
+        animation-timeline: view();
+        animation-range: entry 0% cover 40%;
+      }
+      #seven .container{
+        animation: appear linear;
+        animation-timeline: view();
+        animation-range: entry 0% cover 40%;
+      }
+      section{
+        animation: appear linear;
+        animation-timeline: view();
+        animation-range: entry 0% cover 40%;
+      }

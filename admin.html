@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AASTU EVENTS</title> 
+    <link rel="icon" href="favicon-16x16.png" type="image/png">
+    <link rel="stylesheet" href="css/admin.css">
+    
+</head>
+<body> 
+    <div class="container">
+        <button id="menu-toggle" class="menu-toggle">
+            <img src="images/menu-icon.png" alt="Menu" class="menu-icon">
+        </button>
+                <nav class="sidebar">
+            <h2>Admin Panel</h2>
+            <ul>
+                <li><a href="#dashboard" class="menu-link">Dashboard</a></li>
+                <li><a href="#add-event" class="menu-link">Add Event</a></li>
+                <li><a href="#manage-events" class="menu-link">Manage Events</a></li>
+                <li><a href="#view-bookings" class="menu-link">View Bookings</a></li>
+                <li><a href="#settings" class="menu-link">Settings</a></li>
+                <li><a href="#logout" class="menu-link">Logout</a></li>
+            </ul>
+        </nav>
+        <div class="main-content">
+            <section id="dashboard" class="content-section active">
+                <h1>Welcome to Admin Dashboard</h1>
+                <p>Select an option from the sidebar.</p><br><br>
+                <h2>Upcoming Events</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Event ID</th>
+                            <th>Event Name</th>
+                            <th>Date</th>
+                            <th>Venue</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>AASTU Tech Fest</td>
+                            <td>03/15/25</td>
+                            <td>Graduation Hall</td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td>Korean Food Fest</td>
+                            <td>03/15/25</td>
+                            <td>Graduation Hall</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+
+            <section id="add-event" class="content-section">
+                
+                
+                <div class="event-container">
+                    <h1>Create Event</h1>
+                <p>Fill out the basic info.</p>
+                <br><br>
+                    
+                        
+                <div class="event-type">
+                    <p>Event Type</p>
+                    <hr>
+                
+                    <label class="event-option">
+                        <input type="radio" id="ticketed" value="ticketed" name="event-type">
+                        <div class="event-card">
+                            <img src="images/ticket-icon.webp" alt="Ticket" class="icon">
+                            <h3>Ticketed Event</h3>
+                        </div>
+                    </label>
+                
+                    <label class="event-option">
+                        <input type="radio" id="rsvp" value="rsvp" name="event-type">
+                        <div class="event-card">
+                            <img src="images/rsvp-icon.png" alt="RSVP" class="icon">
+                            <h3>RSVP Event</h3>
+                        </div>
+                    </label>
+                
+                </div>
+                
+
+                    <div class="general-info">
+                        <h2>General Info</h2>
+                        <div class="form-group">
+                            <label for="event-name">Event Name</label>
+                            <input type="text" id="event-name" placeholder="Give it a short, distinct name">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="short-teaser">Short teaser (optional)</label>
+                            <textarea id="short-teaser" placeholder="Add a few words under the name of the event to inspire guests, e.g., An unforgettable show!"></textarea>
+                        </div>
+
+                        <div class="form-group image-upload">
+                            <label>Event Image</label>
+                            <div class="upload-box" id="uploadBox">
+                                <input type="file" id="imageUpload" accept="image/*" >
+                                <span class="plus-sign">+</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <p>Date and Time</p>
+                    <hr>
+                    <br>
+                    <div class="form-group">
+                        <label for="date">Start Date</label>
+                        <input type="date" id="date">
+                    </div>
+                    <div class="form-group">
+                        <label for="time">Start Time</label>
+                        <input type="time" id="time">
+                    </div>
+
+                    
+                    <div class="location-type">
+                        <p>Location and Attendance </p>
+                        <hr>
+                    
+                        <label class="option">
+                            <input type="radio" id="physical" value="physical" name="location-type" >
+                            <h3>Physical Event</h3>
+                        </label>
+                    
+                        <label class="option">
+                            <input type="radio" id="online" value="online" name="location-type">
+                                <h3>Online Event</h3>
+                        </label>
+                    
+                    </div>
+                  
+                    
+                    <div class="form-group">
+                        <label for="map">Event Location</label>
+                        <input type="text" id="map" placeholder="Search for your location">
+                    </div>
+                </div>
+            </section>
+            <section id="manage-events" class="content-section">
+                <h2>Upcoming Events</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Event Name</th>
+                            <th>Date</th>
+                            <th>Venue</th>
+                            <th>Actions</th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>AASTU Tech Fest</td>
+                            <td>03/15/25</td>
+                            <td>Graduation Hall</td>
+                            <td><button id="edit">Edit
+                                <img src="images/pencil.png" height="15px" width="15px" alt="edit" class="pencil-icon">
+                            </button>
+                            <button id="delete">
+                                Delete
+                                <img src="images/trash.png" height="15px" width="15px" alt="delete" class="delete-icon">
+                            </button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Korean Food Fest</td>
+                            <td>03/15/25</td>
+                            <td>Graduation Hall</td>
+                            <td><button id="edit" >Edit
+                                <img src="images/pencil.png" height="15px" width="15px" alt="edit" class="pencil-icon">
+                            </button>
+                            <button id="delete">
+                                Delete
+                                <img src="images/trash.png" height="15px" width="15px" alt="delete" class="delete-icon">
+                            </button>
+                            </td>
+                        </tr>
+                     
+                    </tbody>
+                </table>
+            </section>
+            <section id="view-bookings" class="content-section">
+                <h1>View Bookings</h1>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Booking ID</th>
+                            <th>User Name</th>
+                            <th>Event Name</th>
+                            <th>Booking Date</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>101</td>
+                            <td>Hiwot</td>
+                            <td>AASTU Tech Fest</td>
+                            <td>2025-03-15</td>
+                        </tr>
+                        <tr>
+                            <td>102</td>
+                            <td>John Doe</td>
+                            <td>Korean Food Fest</td>
+                            <td>2025-03-16</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+            <section id="settings" class="content-section">
+                <h1>Settings</h1>
+            
+                <div class="form-group">
+                    <label for="admin-name">Admin Name</label>
+                    <input type="text" id="admin-name" placeholder="Enter your name">
+                </div>
+            
+                <div class="form-group">
+                    <label for="admin-email">Email</label>
+                    <input type="email" id="admin-email" placeholder="Enter your email">
+                </div>
+            
+                <div class="form-group">
+                    <label for="old-password">Old Password</label>
+                    <input type="password" id="old-password" placeholder="Old password">
+                </div>
+            
+                <div class="form-group">
+                    <label for="new-password">New Password</label>
+                    <input type="password" id="new-password" placeholder="New password">
+                </div>
+            
+                <div class="form-group">
+                    <label>
+                        <input type="checkbox" id="notifications">
+                        Email me about new bookings
+                    </label>
+                </div>
+            
+                <button id="save-settings">Save Settings</button>
+            </section>
+                        
+        </div>
+    </div>
+
+<script src="js/admin.js"></script>
+</body>
+</html>

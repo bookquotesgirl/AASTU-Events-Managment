@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Welcome to AASTU Events - Your gateway to campus activities">
+  <title>Welcome to AASTU Events</title>
+
+  <style>
+    /* Fonts */
+    @font-face {
+      font-family: 'gloock';
+      src: url('fonts/Gloock-Regular.ttf') format('truetype');
+      font-weight: normal;
+      font-style: normal;
+    }
+    @font-face {
+      font-family: 'azeret';
+      src: url('fonts/AzeretMono-VariableFont_wght.ttf') format('truetype');
+      font-weight: normal;
+      font-style: normal;
+    }
+
+    /* Reset and base styles */
+    :root {
+      --primary-bg: #251D1D;
+      --secondary-bg: #141111;
+      --accent-color: #FAF7C9;
+      --accent-hover: #dcd9b5;
+      --text-primary: #FFFFFF;
+      --text-secondary: #CCCCCC;
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      background-color: var(--primary-bg);
+      color: var(--text-primary);
+      font-family: 'azeret', monospace;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+      line-height: 1.6;
+    }
+    
+    /* Header styles */
+    header {
+      background-color: var(--primary-bg);
+      display: flex;
+      align-items: center;
+      padding: 1rem 2rem;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.7);
+      gap: 1rem;
+    }
+    
+    header img {
+      height: 60px;
+      width: 60px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid var(--accent-color);
+    }
+    
+    header h1 {
+      font-family: 'gloock', serif;
+      font-size: clamp(1.5rem, 4vw, 2.8rem);
+      letter-spacing: 0.15em;
+      font-weight: normal;
+      color: white;
+    }
+
+    /* Main content */
+    main {
+      flex-grow: 1;
+      max-width: 900px;
+      margin: 2rem auto;
+      padding: 0 1.5rem;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    
+    #greeting {
+      font-size: clamp(1.2rem, 3vw, 1.8rem);
+      font-weight: 300;
+      margin-bottom: 1rem;
+      letter-spacing: 0.05em;
+      line-height: 1.4;
+    }
+    
+    .description {
+      font-size: clamp(0.9rem, 2vw, 1.1rem);
+      font-weight: lighter;
+      margin-bottom: 2.5rem;
+      color: var(--text-secondary);
+      max-width: 42rem;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    /* Call to action section */
+    .cta-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1rem;
+      margin-bottom: 3rem;
+    }
+    
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.8rem 2.2rem;
+      font-size: 1rem;
+      font-weight: 600;
+      text-decoration: none;
+      border-radius: 50px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-family: 'azeret', monospace;
+      min-width: 150px;
+    }
+    
+    .button-primary {
+      background-color: var(--accent-color);
+      color: var(--primary-bg);
+      box-shadow: 0 4px 8px rgba(250, 247, 201, 0.4);
+    }
+    
+    .button-primary:hover {
+      background-color: var(--accent-hover);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 12px rgba(250, 247, 201, 0.5);
+    }
+    
+    .button-secondary {
+      background-color: rgba(250, 247, 201, 0.1);
+      color: var(--accent-color);
+      border: 1px solid var(--accent-color);
+    }
+    
+    .button-secondary:hover {
+      background-color: rgba(250, 247, 201, 0.2);
+      transform: translateY(-2px);
+    }
+
+    /* Featured image section */
+    .featured-container {
+      margin: 2rem auto 0;
+      max-width: 700px;
+    }
+    
+    .featured-image {
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.6);
+      transition: transform 0.3s ease;
+    }
+    
+    .featured-image img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    /* Footer */
+    footer {
+      background-color: var(--secondary-bg);
+      color: var(--text-primary);
+      text-align: center;
+      padding: 1.5rem 0;
+      font-family: 'azeret', monospace;
+      font-size: 0.8rem;
+      letter-spacing: 0.1em;
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+      header {
+        padding: 1rem;
+        flex-direction: column;
+        text-align: center;
+      }
+      
+      .cta-container {
+        flex-direction: column;
+        align-items: center;
+      }
+      
+      .button {
+        width: 100%;
+        max-width: 250px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <img src="images/logo.png" alt="AASTU Events Logo" width="60" height="60" />
+    <h1>AASTU Events</h1>
+  </header>
+
+  <main>
+    <p id="greeting">Hello, Guest! Welcome to your hub for campus events.</p>
+    <p class="description">
+      Discover upcoming shows, concerts, conferences, and more happening at Addis Ababa Science and Technology University.
+      Please login or register to access all events and features.
+    </p>
+
+    <div class="cta-container">
+      <a href="login.html" class="button button-primary" id="loginBtn">Login</a>
+      <a href="register.html" class="button button-secondary">Register</a>
+    </div>
+
+    <div class="featured-container">
+      <div class="featured-image">
+        <img src="images/camp.jpg" alt="Featured Campus Event" loading="lazy" />
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    &copy; 2025 AASTU Events. All rights reserved.
+  </footer>
+
+  <script>
+    // Simple greeting for returning users
+    document.addEventListener('DOMContentLoaded', () => {
+      const userName = localStorage.getItem('userName');
+      const greeting = document.getElementById('greeting');
+
+      if (userName) {
+        greeting.textContent = `Welcome back, Please login to continue.`;
+      }
+    });
+  </script>
+</body>
+</html>

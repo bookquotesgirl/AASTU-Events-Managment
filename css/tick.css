@@ -182,4 +182,8 @@ h1{
   section {
       animation: fadeIn 0.6s ease-out;
   }
-  
+  .card img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}

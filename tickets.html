@@ -24,66 +24,7 @@
     <main>
     <h1>Upcoming Shows</h1>
     <section id="first">
-        <div class="card">
-            <img src="images/tech.jpg" alt="techfest">
-            <div class="card-content">
-            <h2>AASTU Tech Fest</h2>
-            <p>Date: Oct 02, 2025</p>
-            <p>Location: AASTU Graduation Hall</p>
-            <p class="description">Join us for the latest tech innovations and fun activities.</p>
-            <a href="techfest.html">Get Tickets</a>
-        </div>
-    </div>
-    <div class="card">
-        <img src="images/dj.png" alt="techfest">
-        <div class="card-content">
-        <h2>End of Semester concert</h2>
-        <p>Date: Oct 02, 2025</p>
-        <p>Location: AASTU Amphetheater</p>
-        <p class="description">Join us for the latest tech innovations and fun activities.</p>
-        <a href="concert.html">Get Tickets</a>
-    </div>
-</div>
-<div class="card">
-    <img src="images/gc.jpeg" alt="techfest">
-    <div class="card-content">
-    <h2>GC Birthday</h2>
-    <p>Date: Oct 02, 2025</p>
-    <p>Location: AASTU</p>
-    <p class="description">Batch of 2025 we can't wait to see you there.</p>
-    <a href="gc.html">Buy Tickets</a>
-</div>
-</div>
-<div class="card">
-    <img src="images/life.jpg" alt="techfest">
-    <div class="card-content">
-    <h2>Half-Life</h2>
-    <p>Date: Oct 02, 2025</p>
-    <p>Location: AASTU</p>
-    <p class="description">Batch of 2025 join us for the most awesome event of the year.</p>
-    <a href="halflife.html">Buy Tickets</a>
-</div>
-</div>
-<div class="card">
-    <img src="images/girl.png" alt="techfest">
-    <div class="card-content">
-    <h2>Women's day Conference</h2>
-    <p>Date: Oct 02, 2025</p>
-    <p>Location: AASTU Graduation Hall</p>
-    <p class="description">Join us for in empowering women.</p>
-    <a href="women.html">Get Tickets</a>
-</div>
-</div>
-<div class="card">
-    <img src="images/korea.jpg" alt="techfest">
-    <div class="card-content">
-    <h2>Korean Food Fest</h2>
-    <p>Date: Oct 02, 2025</p>
-    <p>Location: AASTU Graduation Hall</p>
-    <p class="description">Join us for the latest tech innovations and fun activities.</p>
-    <a href="korea.html">Buy Tickets</a>
-</div>
-</div>
+        
     </section>
 </main>
 <footer>
@@ -102,15 +43,55 @@
     </div>
 </footer>
     <script>
-document.addEventListener('DOMContentLoaded',()=>{
-    const logo=document.getElementById('logo');
-    if(logo){
-        logo.addEventListener('click', function(){
-      window.location.href='index.html';
-  });
-    }
-       
+document.addEventListener('DOMContentLoaded', () => {
+  const logo = document.getElementById('logo');
+  if (logo) {
+    logo.addEventListener('click', () => {
+      window.location.href = 'index.html';
+    });
+  }
+
+  const firstSection = document.getElementById('first');
+
+  fetch('php/fetchEventforuser.php')
+    .then(response => {
+      if (!response.ok) {
+        throw new Error('Failed to fetch events.');
+      }
+      return response.json();
+    })
+    .then(events => {
+      if (!events || events.length === 0) {
+        firstSection.innerHTML = '<p>No events found.</p>';
+        return;
+      }
+
+      firstSection.innerHTML = ''; // Clear default
+      events.forEach(event => {
+        const card = document.createElement('div');
+        card.classList.add('card');
+
+        card.innerHTML = `
+          <img src="${event.image}" alt="${event.name}">
+          <div class="card-content">
+            <h2>${event.name}</h2>
+            <p>Date: ${new Date(event.start_date).toLocaleDateString()}</p>
+            <p>Location: ${event.venue}</p>
+            <p class="description">${event.description}</p>
+            <a href="event.html?id=${event.id}">Get Tickets</a>
+
+          </div>
+        `;
+        firstSection.appendChild(card);
+      });
+    })
+    .catch(err => {
+      console.error(err);
+      firstSection.innerHTML = '<p class="error">Error loading events.</p>';
+    });
+    console.log("Image path from fetchEventforuser.php:", event.image);
 });
+
 
     </script>
   </body>

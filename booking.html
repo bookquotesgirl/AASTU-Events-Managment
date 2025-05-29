@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Booking - AASTU Events</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #3498db;
+            --secondary-color: #2980b9;
+            --accent-color: #e74c3c;
+            --light-color: #ecf0f1;
+            --dark-color: #2c3e50;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f5f5;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            background-color: var(--dark-color);
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .booking-container {
+            display: flex;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+        
+        .event-details {
+            flex: 1;
+            min-width: 300px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            padding: 25px;
+        }
+        
+        .event-details img {
+            width: 100%;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+        
+        .event-details h2 {
+            color: var(--dark-color);
+            margin-bottom: 10px;
+        }
+        
+        .event-meta {
+            display: flex;
+            gap: 15px;
+            margin: 15px 0;
+            flex-wrap: wrap;
+        }
+        
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            color: #666;
+        }
+        
+        .booking-form {
+            flex: 1;
+            min-width: 300px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            padding: 25px;
+        }
+        
+        .booking-form h2 {
+            color: var(--dark-color);
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #555;
+        }
+        
+        .form-group input, 
+        .form-group select, 
+        .form-group textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 16px;
+            transition: border 0.3s;
+        }
+        
+        .form-group input:focus, 
+        .form-group select:focus, 
+        .form-group textarea:focus {
+            border-color: var(--primary-color);
+            outline: none;
+        }
+
+        /* Ticket Styles */
+        #ticket-options-container {
+            margin: 20px 0;
+        }
+
+        .ticket-option {
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 15px;
+            background: #f9f9f9;
+        }
+
+        .ticket-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+
+        .ticket-price {
+            font-weight: bold;
+            color: #2ecc71;
+        }
+
+        .quantity-selector {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .quantity-selector button {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            border: none;
+            background: #3498db;
+            color: white;
+            cursor: pointer;
+        }
+
+        .quantity-selector input {
+            width: 50px;
+            text-align: center;
+            padding: 5px;
+        }
+
+        .ticket-meta {
+            margin-top: 10px;
+            font-size: 0.9em;
+            color: #666;
+        }
+
+        /* Status messages */
+        .loading { color: #3498db; }
+        .no-tickets { color: #e67e22; }
+        .error { color: #e74c3c; }
+
+        /* Total Section Styles */
+        .total-section {
+            margin-top: 20px;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 8px;
+        }
+
+        .total-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+        }
+
+        .grand-total {
+            font-weight: bold;
+            border-top: 1px solid #ddd;
+            padding-top: 10px;
+            margin-top: 10px;
+            font-size: 20px;
+            color: var(--dark-color);
+        }
+        
+        .btn {
+            display: inline-block;
+            background: var(--primary-color);
+            color: white;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 600;
+            text-align: center;
+            transition: background 0.3s;
+            width: 100%;
+        }
+        
+        .btn:hover {
+            background: var(--secondary-color);
+        }
+        
+        @media (max-width: 768px) {
+            .booking-container {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1><i class="fas fa-ticket-alt"></i> Event Booking</h1>
+        </div>
+    </header>
+    
+    <div class="container">
+        <div class="booking-container">
+            <!-- Event Details Section -->
+            <div class="event-details">
+                <img src="" alt="Event Image" id="event-image">
+                <h2 id="event-title">Loading Event...</h2>
+                <p id="event-description"></p>
+                
+                <div class="event-meta">
+                    <div class="meta-item">
+                        <i class="fas fa-calendar-alt"></i>
+                        <span id="event-date"></span>
+                    </div>
+                    <div class="meta-item">
+                        <i class="fas fa-clock"></i>
+                        <span id="event-time"></span>
+                    </div>
+                    <div class="meta-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span id="event-location"></span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Booking Form Section -->
+            <div class="booking-form">
+                <h2>Book Your Tickets</h2>
+                <form id="bookingForm" action="php/process_booking.php" method="POST">
+                    <input type="hidden" id="event-id" name="event_id" value="">
+                    
+                    <!-- Attendee Information -->
+                    <div class="form-group">
+                        <label for="fullname">Full Name *</label>
+                        <input type="text" id="fullname" name="fullname" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">Email Address *</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="phone">Phone Number *</label>
+                        <input type="tel" id="phone" name="phone" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="student-id">Student/Staff ID (Optional)</label>
+                        <input type="text" id="student-id" name="student_id">
+                    </div>
+                    
+                    <!-- Ticket Selection -->
+                    <h3 style="margin: 20px 0 10px;">Available Tickets</h3>
+                    <div id="ticket-options-container">
+                        <p>Loading ticket options...</p>
+                    </div>
+                    
+                    <!-- Payment Information -->
+                    <div class="form-group">
+                        <label>Payment Method *</label>
+                        <select name="payment_method" required>
+                            <option value="">Select payment method</option>
+                            <option value="credit_card">Credit Card</option>
+                            <option value="mobile_payment">Mobile Payment</option>
+                            <option value="on_site">Pay On Site</option>
+                        </select>
+                    </div>
+                    
+                    <!-- Special Requirements -->
+                    <div class="form-group">
+                        <label for="special-requests">Special Requests</label>
+                        <textarea id="special-requests" name="special_requests" rows="3"></textarea>
+                    </div>
+                    
+                    <!-- Terms and Conditions -->
+                    <div class="form-group">
+                        <label class="checkbox-container">
+                            <input type="checkbox" name="terms_agreed" required>
+                            I agree to the <a href="#" target="_blank">Terms and Conditions</a> *
+                        </label>
+                    </div>
+                    
+                    <!-- Total and Submit -->
+                    <div class="total-section">
+                        <div class="total-row">
+                            <span>Subtotal:</span>
+                            <span id="subtotal">$0.00</span>
+                        </div>
+                        <div class="total-row grand-total">
+                            <span>Total:</span>
+                            <span id="total">$0.00</span>
+                        </div>
+                    </div>
+                    
+                    <button type="submit" class="btn">Complete Booking</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Format currency consistently
+        function formatCurrency(amount) {
+            return new Intl.NumberFormat('en-US', { 
+                style: 'currency', 
+                currency: 'USD' 
+            }).format(amount);
+        }
+
+        // Calculate and update totals
+        function calculateTotal() {
+            let subtotal = 0;
+            
+            // Sum all selected tickets
+            document.querySelectorAll('.ticket-qty').forEach(input => {
+                const quantity = parseInt(input.value) || 0;
+                const price = parseFloat(input.dataset.price) || 0;
+                subtotal += quantity * price;
+            });
+            
+            // Calculate service fee (10% with $1 minimum)
+            const total = subtotal;
+            
+            // Update display
+            document.getElementById('subtotal').textContent = formatCurrency(subtotal);
+            document.getElementById('total').textContent = formatCurrency(total);
+        }
+
+        // Setup quantity selectors
+        function setupQuantitySelectors() {
+            // Plus buttons
+            document.querySelectorAll('.quantity-plus').forEach(button => {
+                button.addEventListener('click', function() {
+                    const input = this.parentElement.querySelector('.ticket-qty');
+                    const max = parseInt(input.max) || 0;
+                    input.value = Math.min(parseInt(input.value) + 1, max);
+                    calculateTotal();
+                });
+            });
+            
+            // Minus buttons
+            document.querySelectorAll('.quantity-minus').forEach(button => {
+                button.addEventListener('click', function() {
+                    const input = this.parentElement.querySelector('.ticket-qty');
+                    input.value = Math.max(parseInt(input.value) - 1, 0);
+                    calculateTotal();
+                });
+            });
+            
+            // Direct input
+            document.querySelectorAll('.ticket-qty').forEach(input => {
+                input.addEventListener('change', function() {
+                    const max = parseInt(this.max) || 0;
+                    this.value = Math.min(Math.max(parseInt(this.value) || 0, 0), max);
+                    calculateTotal();
+                });
+            });
+        }
+
+        // Format time display
+        function formatTime(timeString) {
+            if (!timeString || timeString === "00:00:00") return "";
+            const [hours, minutes] = timeString.split(":");
+            const hour = parseInt(hours);
+            const ampm = hour >= 12 ? "PM" : "AM";
+            const displayHour = hour % 12 || 12;
+            return `${displayHour}:${minutes} ${ampm}`;
+        }
+
+        // Load and display event details
+        async function fetchEventDetails(eventId) {
+            try {
+                const response = await fetch(`php/get_event.php?id=${eventId}`);
+                
+                if (!response.ok) {
+                    throw new Error(`HTTP error! Status: ${response.status}`);
+                }
+
+                const data = await response.json();
+                
+                if (data.success && data.data) {
+                    populateEventDetails(data.data);
+                } else {
+                    console.error("API returned no data:", data.error);
+                }
+            } catch (error) {
+                console.error("Fetch error:", error);
+            }
+        }
+
+        // Populate event details in the DOM
+        function populateEventDetails(event) {
+            document.getElementById("event-title").textContent = event.name || "No title";
+            document.getElementById("event-description").textContent = event.description || "No description";
+            
+            const imageUrl = event.image ? `php/${event.image}` : "images/default.jpg";
+            document.getElementById("event-image").src = imageUrl;
+            document.getElementById("event-image").alt = event.name || "Event image";
+
+            const startDate = event.start_date ? new Date(event.start_date).toLocaleDateString() : "TBD";
+            const startTime = event.start_time ? formatTime(event.start_time) : "";
+            const endTime = event.end_time ? formatTime(event.end_time) : "";
+            
+            document.getElementById("event-date").textContent = startDate;
+            document.getElementById("event-time").textContent = `${startTime}${endTime ? " - " + endTime : ""}`;
+            document.getElementById("event-location").textContent = event.venue || "Location not specified";
+        }
+
+        // Load and display tickets
+        async function loadTickets(eventId) {
+            const container = document.getElementById('ticket-options-container');
+            
+            try {
+                container.innerHTML = '<p class="loading">Loading tickets...</p>';
+                
+                const response = await fetch(`php/get_tickets.php?event_id=${eventId}`);
+                const data = await response.json();
+                
+                if (data.success && data.tickets?.length) {
+                    renderTickets(data.tickets);
+                } else {
+                    container.innerHTML = '<p class="no-tickets">No tickets available</p>';
+                }
+            } catch (error) {
+                console.error("Ticket loading failed:", error);
+                container.innerHTML = '<p class="error">Error loading tickets</p>';
+            }
+        }
+
+        // Render tickets to DOM
+        function renderTickets(tickets) {
+            const container = document.getElementById('ticket-options-container');
+            container.innerHTML = '';
+            
+            tickets.forEach(ticket => {
+                const ticketHtml = `
+                <div class="ticket-option">
+                    <div class="ticket-header">
+                        <div>
+                            <h4>${ticket.name}</h4>
+                            ${ticket.description ? `<p>${ticket.description}</p>` : ''}
+                        </div>
+                        <div class="ticket-price">
+                            ${ticket.price > 0 ? formatCurrency(ticket.price) : 'FREE'}
+                        </div>
+                    </div>
+                    <div class="quantity-selector">
+                        <button type="button" class="quantity-minus">-</button>
+                        <input type="number" 
+                               name="ticket_quantity[${ticket.id}]" 
+                               value="0" 
+                               min="0" 
+                               max="${ticket.quantity}" 
+                               class="ticket-qty"
+                               data-price="${ticket.price}">
+                        <button type="button" class="quantity-plus">+</button>
+                    </div>
+                    <div class="ticket-meta">
+                        <span class="status">${ticket.status.toUpperCase()}</span>
+                        ${ticket.quantity > 0 ? 
+                          `<span class="availability">${ticket.quantity} available</span>` : 
+                          '<span class="availability">UNLIMITED</span>'}
+                    </div>
+                </div>`;
+                
+                container.insertAdjacentHTML('beforeend', ticketHtml);
+            });
+            
+            setupQuantitySelectors();
+            calculateTotal();
+        }
+        document.getElementById('bookingForm').addEventListener('submit', async function(e) {
+    e.preventDefault();
+    
+    try {
+        const formData = new FormData(this);
+        const response = await fetch(this.action, {
+            method: 'POST',
+            body: formData
+        });
+        
+        // First check if the response is OK (status 200-299)
+        if (!response.ok) {
+            // Try to get the error text (could be HTML or JSON)
+            const errorText = await response.text();
+            
+            // Try to parse as JSON, fallback to raw text if it fails
+            let errorMessage = 'Request failed';
+            try {
+                const errorJson = JSON.parse(errorText);
+                errorMessage = errorJson.message || errorText;
+            } catch {
+                errorMessage = errorText.replace(/<[^>]*>/g, ''); // Strip HTML tags
+            }
+            
+            throw new Error(`Server responded with ${response.status}: ${errorMessage}`);
+        }
+        
+        // If response is OK, parse as JSON
+        const result = await response.json();
+        
+        if (result.status === 'success') {
+            alert('Booking successful!');
+            // Optional: Redirect or reset form
+            window.location.href = 'my_bookings.html';
+            // this.reset();
+        } else {
+            throw new Error(result.message || 'Unknown error occurred');
+        }
+    } catch (error) {
+        console.error('Error:', error);
+        
+        // Show user-friendly error message
+        let userMessage = error.message;
+        
+        // Handle specific error cases
+        if (error.message.includes('Unexpected token') || 
+            error.message.includes('is not valid JSON')) {
+            userMessage = 'Server returned an invalid response. Please try again.';
+        }
+        
+        alert(`Booking failed: ${userMessage}`);
+    }
+});
+
+        // Initialize when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const eventId = urlParams.get('id');
+            
+            if (eventId) {
+                document.getElementById('event-id').value = eventId;
+                fetchEventDetails(eventId);
+                loadTickets(eventId);
+                calculateTotal(); // Initialize with zero values
+            } else {
+                console.error("No event ID found in URL");
+            }
+        });
+    </script>
+</body>
+</html>

@@ -260,5 +260,24 @@ iframe {
       font-size: 14px;
   }
 }
+.book-btn {
+  display: inline-block;
+  padding: 12px 24px;
+  background-color: #0077cc;   /* A nice blue */
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+  border-radius: 6px;
+  box-shadow: 0 4px 6px rgba(0, 119, 204, 0.4);
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+  font-size: 16px;
+  margin-top: 15px;
+}
 
-
+.book-btn:hover,
+.book-btn:focus {
+  background-color: #005fa3;  /* Darker blue on hover */
+  box-shadow: 0 6px 8px rgba(0, 95, 163, 0.6);
+  outline: none;
+}

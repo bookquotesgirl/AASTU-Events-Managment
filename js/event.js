@@ -1,59 +1,89 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const getTicketButton = document.getElementById('tic');
-    const logo = document.getElementById('logo');
-    const selectTicketButton = document.getElementById('tib');
-    const popup = document.getElementById('popup');
-    const cancel = document.getElementById('cancel');
-    const button = document.getElementById('check');
+  const urlParams = new URLSearchParams(window.location.search);
+  const eventId = urlParams.get('id');
+  const bookingContainer = document.getElementById('booking-link-container');
 
-    getTicketButton.addEventListener('click', () => {
-        popup.style.display = 'block';
-    });
+  // Add Book Now link if event ID exists
+  if (eventId && bookingContainer) {
+    const bookingLink = document.createElement('a');
+    bookingLink.href = `booking.html?id=${eventId}`;
+    bookingLink.textContent = 'Book Now';
+    bookingLink.classList.add('book-btn');
+    bookingContainer.appendChild(bookingLink);
+  }
 
-    selectTicketButton.addEventListener('click', () => {
-        popup.style.display = 'block';
-    });
+  // Handle missing event ID
+  if (!eventId) {
+    document.getElementById('first').innerHTML = '<p>Event ID missing in URL.</p>';
+    return;
+  }
 
-    cancel.addEventListener('click', () => {
-        popup.style.display = 'none';
-    });
+  // Fetch event details
+  fetch(`php/fetchSingleEvent.php?id=${eventId}`)
+    .then(response => response.json())
+    .then(data => {
+      if (data.error) {
+        document.getElementById('first').innerHTML = `<p>${data.error}</p>`;
+        return;
+      }
 
-    popup.addEventListener('click', (e) => {
-        if (e.target === popup) {
-            popup.style.display = 'none';
+      // Debugging: Log the received data
+      console.log("Event data received:", data);
+      
+      // Set event name
+      document.getElementById('eventName').textContent = data.name;
+
+      // Format date and time
+      const startDateTime = new Date(`${data.start_date}T${data.start_time}`);
+      document.getElementById('eventDate').textContent = startDateTime.toLocaleString();
+      document.getElementById('eventTimeLocation').textContent = `${startDateTime.toLocaleString()} at ${data.venue}`;
+
+      // Set event image with proper path handling
+      const eventImg = document.getElementById('eventImage');
+      if (data.image) {
+        let imagePath = data.image.toString(); // Ensure it's a string
+        imagePath = imagePath.replace(/\\/g, '/'); // Normalize slashes
+        
+        // Add base path if needed
+        if (!imagePath.startsWith('http') && 
+            !imagePath.startsWith('/') && 
+            !imagePath.startsWith('images/') && 
+            !imagePath.startsWith('php/')) {
+          imagePath = 'images/' + imagePath;
         }
-    });
+        
+        console.log("Final image path:", imagePath); // Debug path
+        eventImg.src = imagePath;
+        eventImg.alt = data.name || 'Event Image';
+        eventImg.onerror = () => {
+          console.warn("Failed to load image, using fallback");
+          eventImg.src = 'images/default.jpg';
+        };
+      } else {
+        console.warn("No image path provided, using default");
+        eventImg.src = 'images/default.jpg';
+      }
 
-    logo.addEventListener('click', function () {
-        window.location.href = 'index.html';
-    });
+      // Set event description
+      document.getElementById('aboutEvent').textContent = data.description || 'No description available.';
 
-    button.addEventListener('click', function () {
-        var ticketType = document.getElementById('tics').value;
-        var eventName = document.getElementById('eventName').innerText;
-        localStorage.setItem('ticketType',ticketType);
-        localStorage.setItem('eventName',eventName);
-        window.location.href='checkout.html';
-        fetch('php/book_event.php', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                ticket_type: ticketType
-            })
-        })
-        .then(response => response.json())
-        .then(data => {
-            if (data.success) {
-                alert('Booking successful!');
-                window.location.href = 'checkout.html';  
-            } else {
-                alert('Booking failed.');
-            }
-        })
-        .catch(error => {
-            console.error('Error:', error);
+      // Populate ticket table
+      const ticketBody = document.getElementById('ticketTableBody');
+      ticketBody.innerHTML = '';
+      if (data.tickets && data.tickets.length > 0) {
+        data.tickets.forEach(ticket => {
+          ticketBody.innerHTML += `
+            <tr>
+              <td>${ticket.name}</td>
+              <td>${ticket.price} birr</td>
+            </tr>`;
         });
+      } else {
+        ticketBody.innerHTML = '<tr><td colspan="2">No tickets available.</td></tr>';
+      }
+    })
+    .catch(error => {
+      console.error('Error fetching event:', error);
+      document.getElementById('first').innerHTML = '<p>Failed to load event details.</p>';
     });
 });

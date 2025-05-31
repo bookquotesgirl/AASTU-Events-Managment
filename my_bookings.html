@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Bookings - AASTU Events</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #3498db;
+            --secondary-color: #2980b9;
+            --light-color: #ecf0f1;
+            --dark-color: #2c3e50;
+        }
+        header{
+    margin: 10px;
+    background-color: #251D1D;
+    display:flex;
+    justify-content: space-between;
+    align-items:center;
+    padding: 10px 20px;
+}
+header img{
+    height: auto;
+    border-radius: 50%;
+}
+nav{
+  margin: auto;
+position:fixed;
+right:0;
+overflow: auto;
+word-spacing: 20px;
+letter-spacing: 3px;
+z-index:1000;
+}
+nav a{
+  font-family: 'azeret', sans-serif;
+  text-decoration: none;
+  color:white;
+  font-size:12px;
+  padding: 15px;
+}
+nav a:hover{
+  text-decoration: underline;
+}
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f5f5;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            background-color: var(--dark-color);
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .bookings-container {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            padding: 25px;
+        }
+        
+        .booking-card {
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        
+        .booking-image {
+            flex: 0 0 200px;
+            height: 150px;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+        
+        .booking-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .booking-details {
+            flex: 1;
+            min-width: 300px;
+        }
+        
+        .booking-details h3 {
+            color: var(--dark-color);
+            margin-bottom: 10px;
+        }
+        
+        .booking-meta {
+            display: flex;
+            gap: 15px;
+            margin: 15px 0;
+            flex-wrap: wrap;
+        }
+        
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            color: #666;
+        }
+        
+        .booking-status {
+            padding: 5px 10px;
+            border-radius: 4px;
+            font-weight: bold;
+            font-size: 14px;
+        }
+        
+        .status-confirmed {
+            background-color: #d4edda;
+            color: #155724;
+        }
+        
+        .status-cancelled {
+            background-color: #f8d7da;
+            color: #721c24;
+        }
+        
+        .no-bookings {
+            text-align: center;
+            padding: 40px;
+            color: #666;
+        }
+        
+        .loading {
+            text-align: center;
+            padding: 40px;
+            color: var(--primary-color);
+        }
+        
+        .error {
+            text-align: center;
+            padding: 40px;
+            color: #e74c3c;
+        }
+        
+        .btn {
+            display: inline-block;
+            background: var(--primary-color);
+            color: white;
+            padding: 8px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 600;
+            transition: background 0.3s;
+            text-decoration: none;
+        }
+        
+        .btn:hover {
+            background: var(--secondary-color);
+        }
+        
+        .btn-danger {
+            background: #e74c3c;
+        }
+        
+        .btn-danger:hover {
+            background: #c0392b;
+        }
+        
+        .actions {
+            margin-top: 15px;
+            display: flex;
+            gap: 10px;
+        }
+        
+        @media (max-width: 768px) {
+            .booking-card {
+                flex-direction: column;
+            }
+            
+            .booking-image {
+                flex: 1;
+                height: auto;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1><i class="fas fa-calendar-check"></i> My Bookings</h1>
+        </div>
+
+    <header>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="tickets.html">SHOWS</a>
+            <a href="tickets.html">GET TICKETS</a>
+            
+
+        </nav>
+        
+  </header>
+    </header>
+    
+    <div class="container">
+        <div class="bookings-container">
+            <h2>Your Event Bookings</h2>
+            <div id="bookings-list">
+                <p class="loading">Loading your bookings...</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Format date for display
+        function formatDate(dateString) {
+            const options = { year: 'numeric', month: 'long', day: 'numeric' };
+            return new Date(dateString).toLocaleDateString(undefined, options);
+        }
+function formatCurrency(amount) {
+    return new Intl.NumberFormat('en-US', { 
+        style: 'currency', 
+        currency: 'USD' 
+    }).format(amount || 0);
+}
+        // Format time for display
+        function formatTime(timeString) {
+            if (!timeString) return "";
+            const [hours, minutes] = timeString.split(":");
+            const hour = parseInt(hours);
+            const ampm = hour >= 12 ? "PM" : "AM";
+            const displayHour = hour % 12 || 12;
+            return `${displayHour}:${minutes} ${ampm}`;
+        }
+
+        // Load and display bookings
+        async function loadBookings() {
+    const bookingsList = document.getElementById('bookings-list');
+    bookingsList.innerHTML = '<p class="loading">Loading your bookings...</p>';
+
+    try {
+        const response = await fetch('php/get_bookings.php');
+        
+        // First check if response is OK (status 200-299)
+        if (!response.ok) {
+            const errorText = await response.text();
+            throw new Error(errorText);
+        }
+
+        // Parse the JSON only if response is OK
+        const data = await response.json();
+        
+        // Check the status in the JSON
+        if (data.status === 'success') {
+            if (data.bookings && data.bookings.length > 0) {
+                renderBookings(data.bookings);
+            } else {
+                showNoBookings();
+            }
+        } else {
+            throw new Error(data.message || "Unknown error occurred");
+        }
+    } catch (error) {
+        console.error("Error loading bookings:", error);
+        
+        // Display error message without the full JSON
+        const errorMessage = error.message.startsWith('{') ? 
+            "Error loading bookings" : 
+            error.message;
+            
+        bookingsList.innerHTML = `
+            <div class="error">
+                <i class="fas fa-exclamation-triangle fa-3x"></i>
+                <h3>Error loading bookings</h3>
+                <p>${errorMessage}</p>
+                <button onclick="loadBookings()" class="btn">Try Again</button>
+            </div>
+        `;
+    }
+}
+
+function showNoBookings() {
+    const bookingsList = document.getElementById('bookings-list');
+    bookingsList.innerHTML = `
+        <div class="no-bookings">
+            <i class="fas fa-calendar-times fa-3x"></i>
+            <h3>No bookings found</h3>
+            <p>You haven't booked any events yet.</p>
+            <a href="events.html" class="btn">Browse Events</a>
+        </div>
+    `;
+}
+        // Render bookings to the page
+   function renderBookings(bookings) {
+    const bookingsList = document.getElementById('bookings-list');
+    bookingsList.innerHTML = '';
+    const baseUrl = window.location.href.includes('localhost') 
+        ? 'http://localhost/IPII/AASTU-Events-Managment/'
+        : '/';
+
+    bookings.forEach(booking => {
+        // Handle image path
+        let imageUrl;
+        if (booking.image) {
+            // If path already includes uploads
+            if (booking.image.includes('uploads/')) {
+                imageUrl = baseUrl + 'php/' + booking.image;
+            } else {
+                imageUrl = baseUrl + booking.image;
+            }
+        } else {
+            imageUrl = baseUrl + 'images/default-event.jpg';
+        }
+
+        console.log("Loading image from:", imageUrl); // Debugging
+        
+        const bookingHtml = `
+        <div class="booking-card">
+            <div class="booking-image">
+                <img src="${imageUrl}" onerror="this.onerror=null;this.src='${baseUrl}images/default-event.jpg'" 
+                     alt="${booking.event_name}">
+            </div>
+            <div class="booking-details">
+                <h3>${booking.event_name}</h3>
+                ${booking.ticket_name ? `<p><strong>Ticket:</strong> ${booking.ticket_name}</p>` : ''}
+                <div class="booking-meta">
+                    <div class="meta-item">
+                        <i class="fas fa-calendar-alt"></i>
+                        <span>${formatDate(booking.start_date)}</span>
+                    </div>
+                    <div class="meta-item">
+                        <i class="fas fa-clock"></i>
+                        <span>${formatTime(booking.start_time)} - ${formatTime(booking.end_time)}</span>
+                    </div>
+                </div>
+                <p>${booking.description || ''}</p>
+                <div class="actions">
+                    <span class="booking-status status-${booking.status.toLowerCase()}">
+                        ${booking.status.toUpperCase()}
+                    </span>
+                    <button class="btn btn-danger" onclick="cancelBooking(${booking.id})">
+                        <i class="fas fa-times"></i> Cancel
+                    </button>
+                </div>
+            </div>
+        </div>
+        `;
+        
+        bookingsList.insertAdjacentHTML('beforeend', bookingHtml);
+    });
+}
+
+
+        // Cancel booking function
+       async function cancelBooking(bookingId) {
+    if (!confirm("Are you sure you want to cancel this booking?")) return;
+    
+    try {
+        const response = await fetch('php/cancel_booking.php', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+            },
+            body: `booking_id=${bookingId}`
+        });
+
+        // First check if the HTTP request itself succeeded
+        if (!response.ok) {
+            const errorText = await response.text();
+            throw new Error(errorText);
+        }
+
+        // Then parse the JSON response
+        const result = await response.json();
+        
+        // Check the application-level success status
+        if (result.status === 'success') {
+            alert(result.message || 'Booking cancelled successfully');
+            loadBookings(); // Refresh the list
+        } else {
+            throw new Error(result.message || 'Failed to cancel booking');
+        }
+    } catch (error) {
+        console.error('Error cancelling booking:', error);
+        alert('Error: ' + error.message);
+    }
+}
+
+        // Load bookings when page loads
+        document.addEventListener('DOMContentLoaded', loadBookings);
+    </script>
+</body>
+</html>

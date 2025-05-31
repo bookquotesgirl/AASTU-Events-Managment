@@ -1,261 +1,218 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AASTU EVENTS</title> 
-<link rel="icon" href="images/favicon-16x16.png" type="image/png">
-<link rel="stylesheet" href="css/style.css">
-<a href="https://www.flaticon.com/free-icons/dropdown-arrow" title="dropdown arrow icons"></a>
-  </head>
-  <body> 
-    <header>
-        <div id="logo">
-        <img src="images/logo.png" alt="AASTU events logo"
-        width="50px" height="50px">
-    </div>
-        <nav>
-            <a href="tickets.html">SHOWS</a>
-            <a href="#third">NEWS&UPDATES</a>
-            <a href="tickets.html">GET TICKETS</a>
-            <a href="login.html">Login</a>
-
-        </nav>
-        
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Discover upcoming events, concerts, and activities at AASTU University">
+    <title>AASTU EVENTS | University Happenings</title> 
+    <link rel="icon" href="images/favicon-16x16.png" type="image/png">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Montserrat:wght@700&display=swap" rel="stylesheet">
+</head>
+<body> 
+    <header class="main-header">
+        <div class="header-container">
+            <div id="logo">
+                <img src="images/logo.png" alt="AASTU events logo" class="logo-img" width="50" height="50" style="border-radius: 50%">
+                <span class="logo-text">AASTU Events</span>
+            </div>
+            <button class="mobile-menu-toggle" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </button>
+            <nav id="mainNav" class="main-navigation">
+                <ul>
+                    <li><a href="tickets.html" class="nav-link">SHOWS</a></li>
+                    <li><a href="#third" class="nav-link">NEWS & UPDATES</a></li>
+                    <li><a href="tickets.html" class="nav-link highlight">GET TICKETS</a></li>
+                </ul>
+            </nav>
+        </div>
     </header>
    
-    <section id="first">
-    <h1>AASTU Events</h1>
-    <div class="presents">
-        <h2>PRESENTS</h2>
-    </div>
-    
-    <h3>Discover The Awesome Events Taking Place</h3>
-    <p><button id="tic">Tickets</button></p>
-</section>
+    <section id="hero" class="hero-section">
+        <div class="hero-content">
+            <h1>AASTU Events</h1>
+            <div class="presents">
+                <h2>PRESENTS</h2>
+            </div>
+            <h3>Discover The Awesome Events Taking Place</h3>
+            <a href="tickets.html" class="cta-button">Get Tickets</a>
+        </div>
+    </section>
 
-    <section id="second">
-        <h1>UPCOMING EVENTS</h1>
-        
-        <div class="event">
-            <div class="event-header">
-            <div class="event-info">
-                <p class="date">Tue, Oct 02</p>
-        <p class="name">AASTU Tech Fest<img src ="images/down-arrow.png" class="arrow-icon"></p>
-            </div>
-            <a href="tickets.html" class="tickets">Tickets</a>
+    <section id="upcoming" class="upcoming-events">
+        <div class="section-header">
+            <h2>UPCOMING EVENTS</h2>
+            <p class="section-subtitle">Mark your calendars for these exciting events</p>
         </div>
-    <div class="details">
-        <p>Oct 02,2025, 8:00</p> 
-        <p>AASTU new graduation hall</p>
-        <p>This is an event discription.</p>
-    </div>
+        <div id="eventsContainer" class="events-grid"></div>
+    </section>
 
-        </div>
-    <hr>
-       
-    <div class="event">
-        <div class="event-header">
-        <div class="event-info">
-            <p class="date"> Tue, Oct 02</p>
-        <p class="name">End of Semester Concert<img src ="images/down-arrow.png" class="arrow-icon"></p>
-    </div>
-    <a href="tickets.html">Tickets</a>
-</div>
-        <div class="details">
-            <p>Oct 02,2025, 8:00</p> 
-            <p>AASTU new graduation hall</p>
-            <p>This is an event discription.</p>
+    <section id="news" class="news-section">
+        <div class="section-header">
+            <h2>News & Updates</h2>
+            <p class="section-subtitle">Stay Informed with Our Latest Announcements</p>
         </div>
         
-    </div>
-    <hr>
-        <div class="event">
-            <div class="event-header">
-                <div class="event-info">
-                    <p class="date"> Tue, Oct 02</p>
-            <p class="name">GC Birthday<img src ="images/down-arrow.png" class="arrow-icon"></p>
+        <article class="news-article">
+            <div class="article-image">
+                <img src="images/concert.png" alt="Students enjoying campus concert" width="600" height="400">
             </div>
-            <a href="tickets.html">Tickets</a>
+            <div class="article-content">
+                <h3>Audience Favorite</h3>
+                <p>
+                    On a breezy Friday evening, AASTU University transformed into a vibrant hub 
+                    of music and camaraderie as students gathered for the much-anticipated campus
+                    concert. The event, organized by the university's student council, aimed to
+                    celebrate local talent and foster a sense of community among the student body. 
+                    What started as a modest gathering quickly turned into an unforgettable experience, 
+                    making it a favorite among students compared to other events held on campus.
+                </p>
+                <a href="#" class="read-more">Read full story →</a>
             </div>
-            <div class="details">
-                <p>Oct 02,2025, 8:00</p> 
-                <p>AASTU new graduation hall</p>
-                <p>This is an event discription.</p>
-            </div>
-            
-        </div>
-        <hr>
-            <div class="event">
-                    <div class="event-header">
-                        <div class="event-info">
-                            <p class="date"> Tue, Oct 02</p>
-                <p class="name">Third year half-life<img src ="images/down-arrow.png" class="arrow-icon"></p>
-                </div>
-                <a href="tickets.html">Tickets</a>
-                </div>
-                <div class="details">
-                    <p>Oct 02,2025, 8:00</p> 
-                    <p>AASTU new graduation hall</p>
-                    <p>This is an event discription.</p>
-                </div>
-               
-            </div>
-            <hr>
-                <div class="event">
-                    <div class="event-header">
-                        <div class="event-info">
-                            <p class="date"> Tue, Oct 02</p>
-                    <p class="name">Women's Day Conference<img src ="images/down-arrow.png" class="arrow-icon"></p>
-                    </div>
-                    <a href="tickets.html">Tickets</a>
-</div>
-                    <div class="details">
-                        <p>Oct 02,2025, 8:00</p> 
-                        <p>AASTU new graduation hall</p>
-                        <p>This is an event discription.</p>
-                    </div>
-                </div>
-                <hr>
-                    <div class="event">
-                            <div class="event-header">
-                                <div class="event-info">
-                                    <p class="date"> Tue, Oct 02</p>
-                        <p class="name">Korean Food Fest in campus<img src ="images/down-arrow.png" class="arrow-icon"></p>
-                        </div>
-                        <a href="tickets.html">Tickets</a>
-                        </div>
-                        <div class="details">
-                            <p>Oct 02,2025, 8:00</p> 
-                            <p>AASTU new graduation hall</p>
-                            <p>This is an event discription.</p>
-                        </div>
-                        
-
-                    </div>
-                
-                    </section>
-                
-        <section id="third">
-            <h1>News & Updates</h1>
-            <p class="slogan">Stay Informed with Our Latest Announcements.</p>
-           
-            <div class="container">
-            <img src="images/con.png" alt="life in aastu" height="400" width="400"/>
-            
-            <div class="text-content">
-                <h2 class="title">Audience Favorite</h2>
-    
-            <p class="text">
-                On a breezy Friday evening, AASTU University transformed into a vibrant hub<br> 
-                of music and camaraderie as students gathered for the much-anticipated campus<br>
-                concert. The event, organized by the university’s student council, aimed to<br>
-                celebrate local talent and foster a sense of community among the student body. What started as
-                a modest gathering quickly turned into an unforgettable experience, making it a favorite
-                among students compared to other events held on campus.
-            </p>
-            </div>
-        </div>
-        </section>
+        </article>
         
-        <section id="fourth">
-            <div class="container">
-                <div class="text-content">
-                    <h2 class="title">Behind-the-Scenes<br>Glimpses</h2>
-        
-                <p class="text">
+        <article class="news-article reverse">
+            <div class="article-image">
+                <img src="images/beh.png" alt="Tech fest behind the scenes" width="600" height="400">
+            </div>
+            <div class="article-content">
+                <h3>Behind-the-Scenes Glimpses</h3>
+                <p>
                     On April 17th, GDSC AASTU hosted the AASTU Tech Fest 2024 in collaboration with AASTU, 
                     CGI AASTU, and Ahamnes Space Science Club. The event featured a captivating speech by 
                     university president Dr. Derege, a student Hackathon showcase, and an engaging panel 
                     discussion on tech's impact in Africa with notable speakers like Solomon Kassa and Addis 
-                    Alemayehou. The Appreciation and Impact Awards honored influential figures, including 
-                    Dr. Derege and students like Dagmawi Esayas. Networking sessions followed, along with a 
-                    second panel featuring tech experts. The deputy minister of innovation and technology, 
-                    Dr. Yeshurun Alemayehu, shared insights on success. The CGI Club showcased impressive 3D 
-                    art achievements, and Ahamenes Space Science Club presented their projects. The event concluded 
-                    with Hackathon winners being announced and prizes awarded. Special thanks were extended to sponsors, 
-                    guests, and attendees for their support in making the event a success.
+                    Alemayehou.
                 </p>
-                </div>
+                <a href="#" class="read-more">Read full story →</a>
             </div>
-                <img src="images/beh.png" alt="life in aastu" height="400" width="400"/>
-            
-        </section>
-   
-    
-        <section id="fifth">
-            <div class="container">
-                <img src="images/dj.png" alt="life in aastu" height="400" width="400"/>
-                
-                <div class="text-content">
-                    <h2 class="title">Stage Buzz:<br>The World of Music</h2>
+        </article>
         
-                <p class="text">
+        <article class="news-article">
+            <div class="article-image">
+                <img src="images/dj.png" alt="DJ performing at campus event" width="600" height="400">
+            </div>
+            <div class="article-content">
+                <h3>Stage Buzz: The World of Music</h3>
+                <p>
                     The Birana Club is excited to announce its End of Semester Concert and Theatrical Acts, 
                     a vibrant celebration of creativity and talent! This highly anticipated event will showcase 
                     an array of performances, including live music, dance, and captivating theatrical presentations
                     by our talented members.
-                    Join us as we highlight the hard work and dedication of our performers throughout the semester. 
-                    The concert will feature a mix of genres, ensuring there’s something for everyone to enjoy, while 
-                    the theatrical acts will present thought-provoking stories that resonate with our audience.
-                    
-                    Mark your calendars for this unforgettable evening filled with entertainment, artistry, and 
-                    community spirit. Whether you're a fan of music, theater, or simply looking to support your peers, 
-                    this is an event you won’t want to miss! Stay tuned for more details on the date, time, and location. 
-                    We look forward to celebrating with you!
                 </p>
-                </div>
+                <a href="#" class="read-more">Read full story →</a>
             </div>
+        </article>
+    </section>
+    
+    <section id="special-event" class="special-event-banner">
+        <div class="banner-content">
+            <h2>Special Event on Monday Evening</h2>
+            <p>Stay Tuned for Announcements!</p>
+            <a href="tickets.html" class="cta-button">Get Notified</a>
+        </div>
+    </section>
+    
+    <section id="campus-life" class="gallery-section">
+        <div class="section-header">
+            <h2>Life in Campus</h2>
+            <p class="section-subtitle">Be part of this vibrant community</p>
+        </div>
+        <div class="gallery-grid">
+            <div class="gallery-item">
+                <img src="images/concert.png" alt="Campus concert" width="400" height="400">
+                <div class="gallery-caption">Music Festival</div>
+            </div>
+            <div class="gallery-item">
+                <img src="images/cul.png" alt="Cultural event" width="400" height="400">
+                <div class="gallery-caption">Cultural Day</div>
+            </div>
+            <div class="gallery-item">
+                <img src="images/jen.png" alt="Graduation ceremony" width="400" height="400">
+                <div class="gallery-caption">campus Concert</div>
+            </div>
+            <div class="gallery-item">
+                <img src="images/hbd.png" alt="Birthday celebration" width="400" height="400">
+                <div class="gallery-caption">GC Celebrations</div>
+            </div>
+            <div class="gallery-item">
+                <img src="images/old.png" alt="Alumni event" width="400" height="400">
+                <div class="gallery-caption">Oldies day</div>
+            </div>
+            <div class="gallery-item">
+                <img src="images/dj.png" alt="DJ performance" width="400" height="400">
+                <div class="gallery-caption">DJ Night</div>
+            </div>
+        </div>
+    </section>
+   
+    <section id="cta" class="cta-section">
+        <div class="cta-content">
+            <h2>End of Semester Concert</h2>
+            <p>Get your tickets to enjoy special treats and performances</p>
+            <a href="tickets.html" class="cta-button">RSVP Now</a>
+        </div>
     </section>
 
-    
-        <section id="sixth">
-            <h1>Special Event on Monday Evening<br>
-                Stay Tuned!</h1>
-                <p><button id="tics">Tickets</button></p>
-
-        </section>
-    
-        
-        <section id="seven">
-            <h1>Life in Campus</h1>
-            <p class="slogan">Be part of this vibrant community.</p>
-            <div class="container">
-            <img src="images/con.png" alt="life in aastu" height="400" width="400"/>
-            <img src="images/cul.png" alt="life" height="400" width="400"/>
-            <img src="images/jen.png" alt="life" height="400" width="400"/>
-            <img src="images/hbd.png" alt="life" height="400" width="400"/>
-            <img src="images/old.png" alt="life" height="400" width="400"/>
-            <img src="images/dj.png" alt="life" height="400" width="400"/>
-        
-        </div>
-        </section>
-   
-    
-        <section id="nine">
-            <h1>End of Semester Concert</h1>
-            <p>Get yours to enjoy special treats </p>
-            <p class="link"><a href="tickets.html">RSVP NOW</a></p>
-
-        </section>
-    
-
-        <footer>
-            <div class="container">
-              <p>
-                Contact us<br>
-                <span>info@mysite.com</span><br>
-                <span>Tel: 123-456-7890</span>
-              </p>
-              <p>
-                Socials:<br>
-                <a href="https://instagram.com" target="_blank">INSTAGRAM</a><br>
-                <a href="https://facebook.com" target="_blank">FACEBOOK</a><br>
-                <a href="https://tiktok.com" target="_blank">TIKTOK</a>
-              </p>
+    <footer class="main-footer">
+        <div class="footer-container">
+            <div class="footer-section">
+                <h3>Contact us</h3>
+                <address>
+                    <p><a href="mailto:info@mysite.com">info@mysite.com</a></p>
+                    <p>Tel: <a href="tel:+1234567890">123-456-7890</a></p>
+                    <p>AASTU University Campus<br>Addis Ababa, Ethiopia</p>
+                </address>
             </div>
-        </footer>
+            
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="tickets.html">Upcoming Events</a></li>
+                    <li><a href="#news">News & Updates</a></li>
+                    <li><a href="tickets.html">Buy Tickets</a></li>
+                    <li><a href="#">About Us</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Follow Us</h3>
+                <div class="social-links">
+                    <a href="https://instagram.com" target="_blank" aria-label="Instagram">
+                        <img src="images/instagram-icon.jpeg" alt="Instagram" width="24" height="24">
+                    </a>
+                    <a href="https://facebook.com" target="_blank" aria-label="Facebook">
+                        <img src="images/facebook-icon.jpeg" alt="Facebook" width="24" height="24">
+                    </a>
+                    <a href="https://tiktok.com" target="_blank" aria-label="TikTok">
+                        <img src="images/tiktok-icon.jpeg" alt="TikTok" width="24" height="24">
+                    </a>
+                    <a href="https://telegram.com" target="_blank" aria-label="Telegram">
+                        <img src="images/telegram-icon.jpeg" alt="Telegram" width="24" height="24">
+                    </a>
+                </div>
+                <p class="newsletter-text">Subscribe to our newsletter</p>
+                <form class="newsletter-form">
+                    <input type="email" placeholder="News letter coming soon" required>
+                    <button type="submit">Subscribe</button>
+                </form>
+            </div>
+        </div>
         
- <script src="js/home.js"></script>
-  </body>
+        <div class="footer-bottom">
+            <p>&copy; 2024 AASTU Events. All rights reserved.</p>
+            <div class="legal-links">
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Service</a>
+            </div>
+        </div>
+    </footer>
+    
+    <script src="js/home.js"></script>
+</body>
 </html>
